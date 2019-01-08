@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <bitmap
+                android:gravity="fill|center"
+                android:src="@drawable/mm_bobo_large"/>
+    </item>
+    <item android:top="@dimen/bg_top">
+        <bitmap
+                android:src="@drawable/mm_notify_small"
+                android:gravity="top|center_horizontal"/>
+    </item>
+
+</layer-list>

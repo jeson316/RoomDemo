@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <AnalogClock
+            android:id="@+id/clock_time"
+            android:layout_width="wrap_content"
+            android:dial="@color/colorAccent"
+            android:hand_hour="@color/colorPrimary"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            app:layout_constraintTop_toBottomOf="@+id/clock_time"
+            android:id="@+id/but_save_time"
+            android:text="save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            app:layout_constraintTop_toTopOf="@+id/but_save_time"
+            app:layout_constraintLeft_toRightOf="@+id/but_save_time"
+            android:text="restore"
+            android:id="@+id/but_restore_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:hint="show time"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/but_save_time"
+            android:id="@+id/tv_show_old_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+</android.support.constraint.ConstraintLayout>

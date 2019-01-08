@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+
+    <android.support.constraint.Guideline
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/vertical_guideline"
+            app:layout_constraintGuide_percent="0.63"/>
+
+
+    <TextView
+            android:id="@+id/tv_service"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/vertical_guideline"
+            android:text="一般服务"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            app:layout_constraintTop_toBottomOf="@+id/tv_service"
+            android:id="@+id/but_start_service"
+            android:text="start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            app:layout_constraintLeft_toRightOf="@+id/but_start_service"
+            app:layout_constraintTop_toTopOf="@+id/but_start_service"
+            android:id="@+id/but_long_service"
+            android:text="long service"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/tv_service_bind"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/but_start_service"
+            android:text="bind service,绑定服务"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            app:layout_constraintTop_toBottomOf="@+id/tv_service_bind"
+            android:layout_width="wrap_content"
+            android:text="BindService"
+            android:id="@+id/but_bind_service"
+            android:textAllCaps="false"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            app:layout_constraintTop_toTopOf="@+id/but_bind_service"
+            app:layout_constraintLeft_toRightOf="@+id/but_bind_service"
+            android:layout_width="wrap_content"
+            android:text="UnBindService"
+            android:id="@+id/but_unbind_service"
+            android:textAllCaps="false"
+            android:layout_height="wrap_content"/>
+
+
+    <TextView
+            android:id="@+id/tv_service_life"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/but_bind_service"
+            android:text="service 生命周期"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/but_start_life_service"
+            android:text="start"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/tv_service_life"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/but_stop_life_service"
+            android:text="stop"
+            android:textAllCaps="false"
+            app:layout_constraintLeft_toRightOf="@+id/but_start_life_service"
+            app:layout_constraintTop_toBottomOf="@+id/tv_service_life"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:id="@+id/tv_service_intentservice"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/vertical_guideline"
+            app:layout_constraintTop_toBottomOf="@id/but_start_life_service"
+            android:text="IntentService "
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/but_intent_service"
+            android:text="IntentService"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/tv_service_intentservice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:padding="5dp"
+            android:text="长服务已经运行"
+            android:id="@+id/tv_show_message"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/vertical_guideline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="120dp"/>
+
+    <android.support.v7.widget.LinearLayoutCompat
+            app:layout_constraintLeft_toRightOf="@+id/vertical_guideline"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                app:cardCornerRadius="5dp"
+                android:layout_marginTop="5dp"
+                android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:scaleType="centerCrop"
+                    android:layout_width="120dp"
+                    android:src="@drawable/mm_middle"
+                    android:layout_height="120dp"/>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                app:cardCornerRadius="5dp"
+                android:layout_marginTop="5dp"
+                android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:layout_width="120dp"
+                    android:src="@drawable/mm_middle"
+                    android:layout_height="120dp"/>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                app:cardCornerRadius="5dp"
+                android:layout_marginTop="5dp"
+                android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    android:layout_width="120dp"
+                    android:src="@drawable/mm_middle"
+                    android:layout_height="120dp"/>
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+</android.support.constraint.ConstraintLayout>
