@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">RoomDemo</string>
     <string name="title_activity_word_demo">WordDemoActivity</string>
+    <string name="notification_descript">通知</string>
+    <string name="importent_notification">重要信息</string>
+    <string name="normal_notificaiton">一般信息</string>
+    <string name="progress_notificaiton">进度条信息</string>
 </resources>

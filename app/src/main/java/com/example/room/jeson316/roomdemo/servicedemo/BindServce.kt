@@ -1,4 +1,4 @@
-package com.example.room.jeson316.roomdemo.service
+package com.example.room.jeson316.roomdemo.servicedemo
 
 import android.app.Notification
 import android.app.Service

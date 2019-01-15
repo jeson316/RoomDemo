@@ -1,4 +1,4 @@
-package com.example.room.jeson316.roomdemo.service
+package com.example.room.jeson316.roomdemo.servicedemo
 
 import android.content.ComponentName
 import android.content.Context
@@ -13,7 +13,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.example.room.jeson316.roomdemo.R
-import com.example.room.jeson316.roomdemo.service.BindServce.MyBinder
+import com.example.room.jeson316.roomdemo.servicedemo.BindServce.MyBinder
 
 
 class ServiceActivity : AppCompatActivity() {
@@ -73,7 +73,7 @@ class ServiceActivity : AppCompatActivity() {
         val bindServiceIntent = Intent(this@ServiceActivity, BindServce::class.java)
         bindServiceIntent.putExtra("Data", 100)
         serviceConnection = BindServiceConnection()
-        val notification = NotificationCompat.Builder(this@ServiceActivity)
+        val notification = NotificationCompat.Builder(this@ServiceActivity,"bindService")
             .setSmallIcon(R.drawable.mm_bobo_samll)
             .setProgress(1000, 0, false)
             .setContentTitle("bind serviece")
