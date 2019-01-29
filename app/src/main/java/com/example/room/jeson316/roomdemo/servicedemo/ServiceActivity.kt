@@ -1,9 +1,11 @@
 package com.example.room.jeson316.roomdemo.servicedemo
 
+import android.app.NotificationManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.support.v4.app.NotificationCompat
@@ -14,6 +16,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.room.jeson316.roomdemo.R
 import com.example.room.jeson316.roomdemo.servicedemo.BindServce.MyBinder
+import com.example.room.jeson316.roomdemo.utils.Utils
 
 
 class ServiceActivity : AppCompatActivity() {
@@ -32,6 +35,7 @@ class ServiceActivity : AppCompatActivity() {
     var serviceConnection: ServiceConnection? = null
 
     private val BIND_SERVICE_NOTIFICATION_ID = 2
+    private var BIND_IS_REGISET = false
 
     companion object {
         fun createInstance(context: Context): Intent {
@@ -73,16 +77,26 @@ class ServiceActivity : AppCompatActivity() {
         val bindServiceIntent = Intent(this@ServiceActivity, BindServce::class.java)
         bindServiceIntent.putExtra("Data", 100)
         serviceConnection = BindServiceConnection()
-        val notification = NotificationCompat.Builder(this@ServiceActivity,"bindService")
+
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Utils.createNotificationChannel(
+                notificationManager,
+                "BindService",
+                "绑定服务",
+                NotificationManager.IMPORTANCE_LOW
+            )
+        }
+        val buidler = NotificationCompat.Builder(this@ServiceActivity, "BindService")
             .setSmallIcon(R.drawable.mm_bobo_samll)
             .setProgress(1000, 0, false)
             .setContentTitle("bind serviece")
-            .build()
+
         var thread: Thread? = null
         butBindServce.setOnClickListener {
             bindService(bindServiceIntent, serviceConnection, Context.BIND_AUTO_CREATE)
-            NotificationManagerCompat.from(this@ServiceActivity)
-                .notify(BIND_SERVICE_NOTIFICATION_ID, notification)
+            BIND_IS_REGISET = true
             var count = myBinder?.count ?: 0
             thread = Thread {
                 while (true) {
@@ -93,6 +107,8 @@ class ServiceActivity : AppCompatActivity() {
 
                         }
                         count = myBinder?.count ?: count
+                        NotificationManagerCompat.from(this@ServiceActivity)
+                            .notify(BIND_SERVICE_NOTIFICATION_ID, buidler.setProgress(1000, count, false).build())
                         runOnUiThread {
                             tvShow.setText(count.toString())
                         }
@@ -102,13 +118,12 @@ class ServiceActivity : AppCompatActivity() {
                 }
             }
             thread?.start()
-
         }
         butUnBindServce.setOnClickListener {
             unbindService(serviceConnection)
             NotificationManagerCompat.from(this@ServiceActivity)
                 .cancel(BIND_SERVICE_NOTIFICATION_ID)
-
+            BIND_IS_REGISET = false
         }
     }
 
@@ -137,7 +152,7 @@ class ServiceActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (serviceConnection != null) unbindService(serviceConnection)
+        if (serviceConnection != null && BIND_IS_REGISET) unbindService(serviceConnection)
     }
 
 

@@ -12,9 +12,7 @@ import android.support.annotation.RequiresApi
  */
 
 
-class NotificationChannelUtils {
-
-
+class Utils {
     companion object {
         @RequiresApi(Build.VERSION_CODES.O)
         fun createNotificationChannel(

@@ -1,11 +1,15 @@
 package com.example.room.jeson316.roomdemo.servicedemo
 
 import android.app.IntentService
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
 import android.util.Log
 import com.example.room.jeson316.roomdemo.R
+import com.example.room.jeson316.roomdemo.utils.Utils
 
 /**
  * IntentService 是可以进行耗时操作的。
@@ -15,6 +19,9 @@ import com.example.room.jeson316.roomdemo.R
 class MyIntentService(name: String) : IntentService(name) {
 
     private val NOTIFICATION_ID = 3
+    private val NOTIFICATION_CHANNEL_ID = "intentservice"
+    private val NOTIFICATION_CHANNEL_NAME = "IntentServie服务"
+
 
     constructor() : this("")
 
@@ -32,14 +39,31 @@ class MyIntentService(name: String) : IntentService(name) {
     }
 
     private fun doSomeThing() {
-        val notification = NotificationCompat.Builder(this@MyIntentService, "default")
+
+        val notificationManager: NotificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Utils.createNotificationChannel(
+                notificationManager,
+                NOTIFICATION_CHANNEL_ID,
+                NOTIFICATION_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+        }
+
+        var notification = NotificationCompat.Builder(this@MyIntentService, NOTIFICATION_CHANNEL_ID)
             .setSmallIcon(R.drawable.mm_liuyan_small)
             .setContentTitle("IntentService")
-            .setContentText("我是正文，就不解释了！")
+            .setContentText("我是正文，就不解释了！耗时操作 =====run()")
             .build()
         startForeground(NOTIFICATION_ID, notification)
         Log.e(TAG, " 耗时操作 =====run()")
         Thread.sleep(5000)
+        notification = NotificationCompat.Builder(this@MyIntentService, NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(R.drawable.mm_liuyan_small)
+            .setContentTitle("IntentService")
+            .setContentText("我是正文，就不解释了！耗时操作 =====stop()")
+            .build()
         Log.e(TAG, " 耗时操作 =====stop()")
         NotificationManagerCompat.from(this@MyIntentService)
             .cancel(NOTIFICATION_ID)
