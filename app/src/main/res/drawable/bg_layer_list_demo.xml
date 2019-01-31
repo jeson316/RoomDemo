@@ -3,8 +3,8 @@
 
     <item>
         <bitmap
-                android:gravity="fill|center"
-                android:src="@drawable/mm_bobo_large"/>
+                android:gravity="center_vertical"
+                android:src="@drawable/mm_xmj_large"/>
     </item>
     <item android:top="@dimen/bg_top">
         <bitmap

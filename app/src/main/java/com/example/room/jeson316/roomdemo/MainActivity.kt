@@ -11,11 +11,16 @@ import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
+import com.crashlytics.android.Crashlytics
+import com.example.room.jeson316.roomdemo.animdemo.ValueAnimActivity
 import com.example.room.jeson316.roomdemo.notificationdemo.NotificationActivity
 import com.example.room.jeson316.roomdemo.others.LayerListDemoActivity
 import com.example.room.jeson316.roomdemo.roomdemo.WordDemoActivity
 import com.example.room.jeson316.roomdemo.servicedemo.ServiceActivity
 import com.example.room.jeson316.roomdemo.storagedemo.StorageDemoActivity
+import io.fabric.sdk.android.Fabric
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,11 +31,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var butLayerList: Button
     lateinit var butNotification: Button
     lateinit var butCallPhone: Button
+    lateinit var butAnim: Button
     var phone = "1234455"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Fabric.with(this, Crashlytics())
         setContentView(R.layout.activity_main)
-
         initUI()
     }
 
@@ -41,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         butLayerList = findViewById(R.id.but_open_layer_list_activity)
         butNotification = findViewById(R.id.but_open_notification_activity)
         butCallPhone = findViewById(R.id.but_open_call_phone)
-
+        butAnim = findViewById(R.id.but_open_anim)
         butWordDemo.setOnClickListener {
             val intent = WordDemoActivity.createInstance(this@MainActivity)
             startActivity(intent)
@@ -84,6 +90,10 @@ class MainActivity : AppCompatActivity() {
                     intentToCall(phone)
                 }
             }
+        }
+
+        butAnim.setOnClickListener {
+            startActivity(ValueAnimActivity.createInstance(this@MainActivity))
         }
     }
 

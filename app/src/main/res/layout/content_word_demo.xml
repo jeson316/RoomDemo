@@ -16,12 +16,13 @@
             android:foregroundGravity="center_vertical"
             app:cardCornerRadius="8dp"
             android:elevation="@dimen/fab_margin"
+            app:layout_editor_absoluteX="5dp"
             android:layout_height="wrap_content">
 
         <ImageView
                 android:id="@+id/iv_mm"
                 android:scaleType="centerCrop"
-                android:src="@drawable/mm_bobo_samll"
+                android:src="@drawable/mm_middle"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"/>
     </android.support.v7.widget.CardView>

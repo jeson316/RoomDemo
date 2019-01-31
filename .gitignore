@@ -20,3 +20,5 @@
 #Gradle
 .gradle
 
+fabric.properties
+
